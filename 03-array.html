@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+    <script>
+
+        // Array Loop : forEach
+        // cara 1
+        {
+            const array = ["Faqih", "Pratama", "Muhti"];
+
+            array.forEach(function (value, index) {
+                console.info(`${index} : ${value}`);           
+            })
+        }
+
+        // cara 2
+        {
+            const array = ["Faqih", "Pratama", "Muhti"];
+
+            array.forEach((value, index) => console.info(`${index} : ${value}`));
+        }
+
+        // cara 3
+        {
+            const array = ["Faqih", "Pratama", "Muhti"];
+
+            array.forEach(value => console.info(value));
+        }        
+
+        // Array Queue | FIFO (First In ~ First Out): push() ~ shift()
+        {
+
+            const queue = [];
+
+            queue.push("antrian ke-1");
+            queue.push("antrian ke-2");
+            queue.push("antrian ke-3");
+
+            console.info(queue.shift()); // antrian ke-1
+            console.info(queue.shift()); // antrian ke-2
+            console.info(queue.shift()); // antrian ke-3
+            console.info(queue.shift()); // undefined
+
+        }
+
+        // Array Stack | LIFO (Last In ~ First Out) : push() ~ pop()
+        {
+            const stack = [];
+
+            stack.push("tumpukan ke-1");
+            stack.push("tumpukan ke-2");
+            stack.push("tumpukan ke-3");
+
+            console.info(stack.pop()); // tumpukan ke-3
+            console.info(stack.pop()); // tumpukan ke-2
+            console.info(stack.pop()); // tumpukan ke-1
+            console.info(stack.pop()); // undefined
+        }
+
+        /**
+         * Array Search :
+         * find(value => boolean)       ->  Mencari data sesuai dengan kondisi
+         * findIndex(value => boolean)  ->  Mencari data index sesuai dengan kondisi
+         * includes(value) : boolean    ->  Mengecek apakah terdapat data
+         * indexOf(value) : number      ->  Mengecek posisi index data
+         * lasIndexOf(value) : number   ->  Mengecek posisi index data terakhir
+        */
+        {
+            const source = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5];
+
+            console.info(source.find(value => value > 3)) // 4
+            console.info(source.findIndex(value => value > 3)) // 3
+            console.info(source.includes(7)); // false
+            console.info(source.indexOf(5)); // 4
+            console.info(source.lastIndexOf(5)); // 9
+        }
+
+        /**
+         * Array Filter :
+         * filter(value => boolean) : Array  ->  Melakukan filter data yang kondosinya bernilai true
+        */
+        {
+            const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+            const ganjil = numbers.filter(value => value % 2 === 1);  // hasil bagi 2 = 1 
+            const genap = numbers.filter(value => value % 2 === 0); // hasil bagi 2 = 0
+
+            console.info(numbers); // menampilkan semua bilangan
+            console.info(ganjil); // menampilkan bilangan ganjil
+            console.info(genap); // menampilkan bilangan genap
+        }
+
+        /**
+         * Array Transform :
+         * map(value => result) : Array<result>             ->  Melakukan transform tiap value dan menghasilkan array result
+         * reduce(resultBefor, value => result) : result    ->  Melakukan transform dengan menggunakan value array dan value selanjutnya, 
+         *                                                      lalu hasilnya dilanjutkan ke iterasi selanjutnya
+         * reduceRight(resultBefore, value => result)       ->  Sama seperti reduce(), namun dilakukan dari belakang
+        */
+        {
+            // names
+            const names = "Faqih Pratama Muhti".split(" "); // ['Faqih', 'Pratama', 'Muhti']
+            const namesUpper = names.map(value => value.toUpperCase()); // ['FAQIH', 'PRATAMA', 'MUHTI'] 
+            console.info(namesUpper);
+
+            const namesReduce = names.reduce((before, value) => before + " " +value); // Faqih Pratama Muhti
+            console.info(namesReduce);
+
+            const namesReduceRight = names.reduceRight((before, value) => before + " " + value); // Muhti Pratama Faqih
+            console.info(namesReduceRight);
+
+            // numbers
+            const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            
+            const numbersReduce = numbers.reduce((before, value) => before + value); // 1+2+3+4+5+6+7+8+9+10
+            console.info(numbersReduce); // 55
+
+            const numbersReduceRight = numbers.reduceRight((result, value) => result + value); // 10+9+8+7+6+5+4+3+2+1
+            console.info(numbersReduceRight); // 55
+        }
+
+    </script>
+</body>
+</html>
